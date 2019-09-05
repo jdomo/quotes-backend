@@ -54,3 +54,5 @@ router.post('/analyze', (req, res) => {
 //   console.log(data.sentenceTones[1].tones, '<-- sentence tones');
 //   console.log(data.sentenceTones[2].tones, '<-- sentence tones');
 // })
+
+module.exports = router;

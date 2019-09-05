@@ -6,7 +6,7 @@ const app = express();
 connectDB();  //access config/db to connect to mongo
 
 //middleware
-app.use(express.json({extended: false}))
+app.use(express.json({extended: false})) //allows us to get data from req.body
 
 //default endpoint
 app.get('/', (req, res) => {
