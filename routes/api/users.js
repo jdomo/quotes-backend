@@ -1,6 +1,8 @@
 const express = require('express');
 const router = express.Router();
 const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
+const config = require('config');
 const { check, validationResult } = require('express-validator')
 
 const User = require('../../models/User')
@@ -33,8 +35,17 @@ async (req, res) => {
     user.password = await bcrypt.hash(req.body.password, salt); 
 
     await user.save();
+    
+    const payload = {id: user.id}   //mongo: _id, mongoose uses abstraction so we can access w/o underscore
 
-    res.send('Successfully registered user');
+    jwt.sign(payload, 
+    config.get('jwtSecret'), 
+    {expiresIn: 360000}, 
+    (err, token) => {
+       if (err) throw err;
+       res.json({ token });
+      }
+    );           //access secret from config/default.json - required up top
   } catch (err) {
     console.log('Error in users route: ', err.message)
   }

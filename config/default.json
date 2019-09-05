@@ -1,3 +1,4 @@
 {
-  "mongoURI": "mongodb+srv://jdomo:321@watchyourtone-gii0n.mongodb.net/test?retryWrites=true&w=majority"
+  "mongoURI": "mongodb+srv://jdomo:321@watchyourtone-gii0n.mongodb.net/test?retryWrites=true&w=majority",
+  "jwtSecret": "opensesame"
 }
