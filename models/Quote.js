@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 const QuoteSchema = new mongoose.Schema({
-  analysis: [{name: String, score: Number}],
+  analysis: {type: Schema.Types.Mixed, required: true},
   user: [{
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User'
