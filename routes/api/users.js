@@ -27,25 +27,30 @@ async (req, res) => {
       res.status(400).json({message: 'User already exists'})      
     }
 
+    //add user-entered email to User instance
     user = new User({email: req.body.email});
 
+    //determine encryption level for password hash
     const salt = await bcrypt.genSalt(10);
 
-    //add hashed password to user instance
+    //add hashed password to User instance
     user.password = await bcrypt.hash(req.body.password, salt); 
 
+    //save user instance in db
     await user.save();
     
     const payload = {id: user.id}   //mongo: _id, mongoose uses abstraction so we can access w/o underscore
 
-    jwt.sign(payload, 
-    config.get('jwtSecret'), 
-    {expiresIn: 360000}, 
-    (err, token) => {
-       if (err) throw err;
-       res.json({ token });
+    //sign web token - step one of JWT process
+    jwt.sign(
+      payload, 
+      config.get('jwtSecret'),       //from config/default.json
+      {expiresIn: 360000},          //sets expiry time for token. optional - 3600 is norm (one hour)
+      (err, token) => {
+        if (err) throw err;
+        res.json({ token: token });    //include token in response
       }
-    );           //access secret from config/default.json - required up top
+    );
   } catch (err) {
     console.log('Error in users route: ', err.message)
   }
