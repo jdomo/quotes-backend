@@ -18,11 +18,12 @@ router.post('/analyze', (req, res) => {
   
   toneAnalyzer.tone(toneParams)
   .then(response => {
-    const data = {docTones: []};
+    const data = [];
 
     response.document_tone.tones.map((item, index) => {
-      data.docTones.push({name: item.tone_name, score: item.score})
+      data.push({name: item.tone_name, score: item.score})
     })
+    console.log(data, "<-- data array")
     res.json({
       data: data
     })

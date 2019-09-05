@@ -5,8 +5,11 @@ const UserSchema = new mongoose.Schema({
   password: {type: String, required: true},
   quotes: [{
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'User'
+    ref: 'Quote'
   }]
 })
 
+const User = mongoose.model('User', UserSchema);
+
+module.exports = User;
 //crud-app-sketch
