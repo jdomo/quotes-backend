@@ -15,8 +15,9 @@ router.post('/analyze', (req, res) => {
     tone_input: { 'text': text },
     content_type: 'application/json',
   };
+  console.log(req.body)
   // const toneParams = {
-  //   tone_input: { 'text': req.body.<name of textfield element here> },
+  //   tone_input: { 'text': req.body.quoteText},
   //   content_type: 'application/json',
   // };
   
