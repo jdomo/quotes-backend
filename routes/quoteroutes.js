@@ -8,12 +8,44 @@ const toneAnalyzer = new ToneAnalyzerV3({
   iam_apikey: 'yEYuRPcdpuhyx4p8bX7viCk4KYOKq3seO2HTW0uFm9xt'
 })
 
-const text = "Don't judge each day by the harvest you reap but by the seeds that you plant.";
+const text = "Don't judge each day by the harvest you reap but by the seeds that you plant. An API is only as good as its documentation.";
 
-const toneParams = {
-  tone_input: { 'text': text },
-  content_type: 'application/json',
-};
+router.post('/analyze', (req, res) => {
+  const toneParams = {
+    tone_input: { 'text': text },
+    content_type: 'application/json',
+  };
+  
+  toneAnalyzer.tone(toneParams)
+  .then(response => {
+    const data = {docTones: []};
 
-toneAnalyzer.tone(toneParams).then(response => JSON.stringify(response))
-.then(data => console.log(data));
+    response.document_tone.tones.map((item, index) => {
+      data.docTones.push({name: item.tone_name, score: item.score})
+    })
+    res.json({
+      data: data
+    })
+  })
+})
+
+
+//   response.sentences_tone.map(item => {
+//     data.sentenceTones.push({
+//       sentence_id: item.sentence_id, 
+//       text: item.text, 
+//       tones: item.tones.map(item => {
+//         let obj = {};
+//         obj.name = item.tone_name;
+//         obj.score = item.score;
+//         return obj
+//       })})
+//   })
+//   return data;
+// })
+// .then(data => {
+//   console.log(data, '<-- final data');
+//   console.log(data.sentenceTones[0].tones, '<-- sentence tones');
+//   console.log(data.sentenceTones[1].tones, '<-- sentence tones');
+//   console.log(data.sentenceTones[2].tones, '<-- sentence tones');
+// })
