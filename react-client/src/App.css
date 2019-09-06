@@ -1,3 +1,41 @@
 body {
-  text-align: center
+  text-align: center;
+  font-family: 'Manjari', sans-serif;
+  background: hsla(0, 0%, 0%, 0.685);
+  color: #FFFFFF;
 }
+
+p {
+  font-size: 18px;
+}
+
+i {
+  font-size: 40px;
+  margin-bottom: 10px;
+}
+
+#input-quote {
+  text-align: center;
+  color: #FFFFFF;
+  font-size: 20px;
+  margin-top: 20px;
+}
+
+.container {
+  margin-top: 80px;
+  /* display: flex; */
+  /* align-items: center; */
+  text-align: center;
+}
+
+/* .row {
+  display: flex;
+  align-items: center;
+  width: 100%;
+} */
+.submit-btn {
+  margin-top: 30px;
+  color: #FFFFFF;
+  font-weight: 600;
+}
+
