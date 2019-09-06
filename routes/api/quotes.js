@@ -1,21 +1,44 @@
 const express = require('express');
 const router = express.Router();
-
+const auth = require('../../middleware/auth')
+const {check, validationResult} = require('express-validator');
+const Quote = require('../../models/Quote')
+const User = require('../../models/User')
 const ToneAnalyzerV3 = require('ibm-watson/tone-analyzer/v3');
-
 const toneAnalyzer = new ToneAnalyzerV3({
   version: '2017-09-21',
   iam_apikey: 'yEYuRPcdpuhyx4p8bX7viCk4KYOKq3seO2HTW0uFm9xt'
 })
-
 const text = "Don't judge each day by the harvest you reap but by the seeds that you plant. An API is only as good as its documentation.";
+
+//get user quotes
+
+router.get('/me', auth, async (req, res) => {
+  try {
+    //find quote by 
+    const quote = await Quote.findOne({ user: req.user.id }).populate('user', ['email']);
+
+    if (!quote) res.status(400).json({message: 'No quotes found for this user.'})
+
+    res.json({quote: quote})
+
+  } catch(err) {
+    console.error(err.message);
+    res.status(500).send('Server Error')
+  }
+})
+
+//post user quote profile
+router.post(
+  '/', auth, (req, res) => {})
+
 
 router.post('/analyze', (req, res) => {
   const toneParams = {
     tone_input: { 'text': text },
     content_type: 'application/json',
   };
-  console.log(req.body)
+  // console.log(req.body)
   // const toneParams = {
   //   tone_input: { 'text': req.body.quoteText},
   //   content_type: 'application/json',

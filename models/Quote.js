@@ -1,13 +1,13 @@
 const mongoose = require('mongoose');
 
 const QuoteSchema = new mongoose.Schema({
-  analysis: {type: Schema.Types.Mixed, required: true},
+  analysis: {type: [], required: true},
   user: [{
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'User'
+    ref: 'users'
   }]
 })
 
-const Quote = mongoose.model('Quote', QuoteSchema);
+const Quote = mongoose.model('quote', QuoteSchema);
 
 module.exports = Quote;
