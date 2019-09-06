@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import logo from './logo.svg';
 import './App.css';
 import { Route, Switch } from 'react-router-dom';
+import Navbar from './components/Navbar';
 import Result from './components/Result';
 import Landing from './components/Landing';
 import Register from './components/Register';
@@ -20,8 +21,10 @@ class App extends Component {
   render() {
     return (
       <main>
+        <Navbar/>
         <Switch>
           <Route exact path="/" render={(props) => <Landing {...props} />}/>
+          <Route exact path="/result" render={(props) => <Result {...props} />}/>
           <Route component={my404} />
         </Switch>
       </main>

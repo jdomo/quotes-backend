@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import Navbar from './Navbar'
 
 class Result extends Component {
   state = {
@@ -9,9 +8,11 @@ class Result extends Component {
   render() {
     return (
       <div>
-        <Navbar/>
         <div className="container">
           <p>Quote result here!</p>
+          <form action="/">
+            <input type="submit" className="submit-btn btn" value="back"/>
+          </form>
         </div>
       </div>
     )
