@@ -25,6 +25,8 @@ class App extends Component {
         <Switch>
           <Route exact path="/" render={(props) => <Landing {...props} />}/>
           <Route exact path="/result" render={(props) => <Result {...props} />}/>
+          <Route exact path="/login" component={Login}/>
+          <Route exact path="/register" component={Register}/>
           <Route component={my404} />
         </Switch>
       </main>
