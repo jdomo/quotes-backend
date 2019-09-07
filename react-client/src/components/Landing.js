@@ -10,7 +10,7 @@ class Landing extends Component {
     return (
       <div>
         <div className="container">
-          <p>Input your quote here!</p>
+          <p id="instructions">Input your quote here!</p>
           <Form />
         </div>
       </div>

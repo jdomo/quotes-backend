@@ -4,14 +4,13 @@ const auth = require('../../middleware/auth')
 const {check, validationResult} = require('express-validator');
 const Quote = require('../../models/Quote')
 const User = require('../../models/User')
+
 const ToneAnalyzerV3 = require('ibm-watson/tone-analyzer/v3');
 const toneAnalyzer = new ToneAnalyzerV3({
   version: '2017-09-21',
   iam_apikey: 'yEYuRPcdpuhyx4p8bX7viCk4KYOKq3seO2HTW0uFm9xt'
 })
-const text = "Don't judge each day by the harvest you reap but by the seeds that you plant. An API is only as good as its documentation.";
 
-//get user quotes
 
 router.get('/me', auth, async (req, res) => {
   try {
@@ -28,12 +27,11 @@ router.get('/me', auth, async (req, res) => {
   }
 })
 
-//post user quote profile
-router.post(
-  '/', auth, (req, res) => {})
-
 
 router.post('/analyze', (req, res) => {
+  console.log(req.body, '<-- req.body in analyze post')
+  const text = req.body.quote;
+
   const toneParams = {
     tone_input: { 'text': text },
     content_type: 'application/json',
@@ -47,9 +45,10 @@ router.post('/analyze', (req, res) => {
   toneAnalyzer.tone(toneParams)
   .then(response => {
     const data = [];
-
+    console.log(response)
     response.document_tone.tones.map((item, index) => {
       data.push({name: item.tone_name, score: item.score})
+      console.log(data)
     })
     console.log(data, "<-- data array")
     res.json({

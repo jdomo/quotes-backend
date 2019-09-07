@@ -1,12 +1,14 @@
 const express = require('express');
 const connectDB = require('./config/db');
 const PORT = process.env.PORT || 5000;
+const cors = require('cors')
 
 const app = express();
 connectDB();  //access config/db to connect to mongo
 
 //middleware
 app.use(express.json({extended: false})) //allows us to get data from req.body
+app.use(cors())
 
 //default endpoint
 app.get('/', (req, res) => {

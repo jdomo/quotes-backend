@@ -5,7 +5,8 @@ class Form extends Component {
   
   state = {
     submitted: false,
-    quote: ''
+    quote: '',
+    quoteAnalysis: []
   }
 
   handleOnChange = (e) => {
@@ -15,8 +16,20 @@ class Form extends Component {
     console.log(this.state)
   }
 
-  handleOnSubmit = (e) => {
+  handleOnSubmit = async (e) => {
     e.preventDefault();
+    console.log(this.state.quote, '<--this.state.quote')
+    const response = await fetch(`http://localhost:5000/api/quotes/analyze`, {
+      method: 'POST',
+      // credentials: 'include',
+      body: JSON.stringify({quote: this.state.quote}),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    });
+    console.log(response, '<-- response in handleSubmit')
+    const parsedResponse = await response.json();
+    console.log(parsedResponse, '<---parsedResponse')
     this.setState({
       submitted: true
     })
@@ -26,10 +39,15 @@ class Form extends Component {
     return (
       <div>
         {
-          this.state.submitted && <Redirect to='/result'/>
+          this.state.submitted && 
+          <Redirect to={{
+            pathname: '/result',
+            state: {quoteAnalysis: this.state.quoteAnalysis}
+          }}/>
         }
+
         <form onSubmit={this.handleOnSubmit}>
-          <i class="fas fa-arrow-down"></i>
+          <i className="fas fa-arrow-down"/>
           <input type="text" id="input-quote" value={this.state.quote} name="quote" onChange={this.handleOnChange}/>
           <input type="submit" className="submit-btn btn" value="analyze"/>
         </form>
