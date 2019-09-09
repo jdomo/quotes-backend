@@ -14,6 +14,13 @@ i {
   margin-bottom: 10px;
 }
 
+.results-item {
+  text-transform: uppercase;
+  font-weight: 600;
+  font-size: 2.5rem;
+  letter-spacing: 2px;
+}
+
 #input-quote {
   text-align: center;
   color: #FFFFFF;
@@ -24,20 +31,18 @@ i {
 #results-header {
   text-decoration: underline;
   font-weight: 400;
+  margin-bottom: 20px;
+}
+
+#results-div {
+  margin-top: 30px;
 }
 
 .container {
   margin-top: 80px;
-  /* display: flex; */
-  /* align-items: center; */
   text-align: center;
 }
 
-/* .row {
-  display: flex;
-  align-items: center;
-  width: 100%;
-} */
 .submit-btn {
   margin-top: 30px;
   color: #FFFFFF;

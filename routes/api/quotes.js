@@ -38,10 +38,11 @@ router.post('/analyze', (req, res) => {
   toneAnalyzer.tone(toneParams)
   .then(response => {
     const data = [];
+
     response.document_tone.tones.map((item) => {
       data.push({name: item.tone_name, score: item.score})
     })
-    console.log(data, '<-- data from fetch in quotes.js (backend)')
+    
     res.json({
       data: data
     })

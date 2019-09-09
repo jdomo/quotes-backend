@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {Redirect} from 'react-router-dom';
+// import { threadId } from 'worker_threads';
 
 class Form extends Component {
   
@@ -13,23 +14,29 @@ class Form extends Component {
     this.setState({
       [e.target.name]: e.target.value
     })
-    console.log(this.state)
   }
 
   handleOnSubmit = async (e) => {
     e.preventDefault();
-    console.log(this.state.quote, '<--this.state.quote')
+
+    //clean up entered quote
+    if (this.state.quote.includes('"') || this.state.quote.includes("'")) {
+      let quote = this.state.quote;
+      while (quote.includes('"') || quote.includes("'")) {
+        quote = quote.replace('"', '');
+        quote = quote.replace("'", '');
+      }
+      this.setState({quote})
+    }
+
     const response = await fetch(`http://localhost:5000/api/quotes/analyze`, {
       method: 'POST',
-      // credentials: 'include',
       body: JSON.stringify({quote: this.state.quote}),
       headers: {
         'Content-Type': 'application/json'
       }
     });
-    console.log(response, '<-- response in handleSubmit')
     const parsedResponse = await response.json();
-    console.log(parsedResponse, '<---parsedResponse')
     this.setState({
       submitted: true,
       quoteAnalysis: parsedResponse.data
@@ -37,6 +44,7 @@ class Form extends Component {
   }
 
   render() {
+
     return (
       <div>
         {
