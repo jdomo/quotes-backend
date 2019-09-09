@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import {Link} from 'react-router-dom';
 
 const Result = (props) => {
 
@@ -22,9 +23,9 @@ const Result = (props) => {
               : "No tone detected. Try a longer quote - no jibberish."}
           </ul>
         </div>
-        <form action="/">
+        <Link to="/">
           <input type="submit" className="submit-btn btn" value="back"/>
-        </form>
+        </Link>
       </div>
     </div>
   )

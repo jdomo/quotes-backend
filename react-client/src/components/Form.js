@@ -60,7 +60,7 @@ class Form extends Component {
 
         <form onSubmit={this.handleOnSubmit}>
           <i className="fas fa-arrow-down"/>
-          <input type="text" id="input-quote" value={this.state.quote} name="quote" onChange={this.handleOnChange}/>
+          <input type="text" id="input-quote" autocomplete="off" value={this.state.quote} name="quote" onChange={this.handleOnChange}/>
           <input type="submit" className="submit-btn btn" value="analyze"/>
         </form>
       </div>

@@ -14,6 +14,21 @@ i {
   margin-bottom: 10px;
 }
 
+.fa-eye {
+  font-size: 30px;
+  padding: 0 20px;
+  font-weight: 100;
+}
+
+.fa-eye:hover {
+  cursor: pointer;
+  color: rgba(0, 0, 0, 0.247);
+}
+
+.main-title {
+  font-family: 'Raleway', sans-serif;
+}
+
 .results-item {
   text-transform: uppercase;
   font-weight: 600;
@@ -21,11 +36,15 @@ i {
   letter-spacing: 2px;
 }
 
-#input-quote {
+#input-quote, #register-form input {
   text-align: center;
   color: #FFFFFF;
   font-size: 20px;
   margin-top: 20px;
+}
+
+#register-form input[type="password"] input[type="email"] {
+  width: 60%;
 }
 
 #results-header {
