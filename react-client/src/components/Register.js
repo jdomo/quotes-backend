@@ -1,14 +1,19 @@
 import React, {Fragment, useState} from 'react';
+import {Redirect} from 'react-router-dom';
 
 const Register = () => {
   const [registerData, setRegisterData] = useState({
     email: '',
     password: '',
-    passwordCheck: ''
+    passwordCheck: '',
+    logged: false
   })
 
   const onChangeHandler = (e) => {
-    setRegisterData({...registerData, [e.target.name]: e.target.value});
+    setRegisterData({
+      ...registerData, 
+      [e.target.name]: e.target.value
+    });
   }
 
   const onSubmit = async (e) => {
@@ -21,10 +26,6 @@ const Register = () => {
       }
 
       try {
-
-        //body for backend post request
-        const body = await JSON.stringify(newUser);
-
         const response = await fetch(`http://localhost:5000/api/users`, {
           method: 'POST',
           body: JSON.stringify(newUser),
@@ -35,15 +36,22 @@ const Register = () => {
 
         const parsedUserResponse = await response.json()
         console.log(parsedUserResponse, '<--- parsed user response containing JWT')
-
+        setRegisterData({
+          ...registerData,
+          logged: true
+        })
       } catch (err) {
-        console.log(err, '<-- err from register onSubmit')
+        console.log('Register User Error: ', err)
       }
     }
   }
 
   return (
     <Fragment>
+      {
+        registerData.logged &&
+        <Redirect to='/'/>
+      }
       <h4>Register</h4>
       <div className="container">
         <form className="form center-align" id="register-form" onSubmit={onSubmit}>

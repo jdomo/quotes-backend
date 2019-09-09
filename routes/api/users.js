@@ -58,4 +58,47 @@ async (req, res) => {
   }
 })
 
+//login POST route
+
+router.post('/login', 
+[
+  check('email', 'User did not enter valid email').isEmail(),
+  check('password', 'Password required').exists()
+],
+async (req, res) => {
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    //400 - bad request
+    res.status(400).json({ errors: errors.array() })
+  }
+
+  try {
+    let user = await User.findOne({email: req.body.email});
+
+    if (!user) {
+      res.status(400).json({message: 'Invalid credentials'})      
+    }
+    
+    //use bcrypt compare method to compare hashed password to plain text password - returns boolean
+    const isMatch = await bcrypt.compare(req.body.password, user.password)
+
+    if (!isMatch) res.status(400).json({message: 'Invalid credentials'}) 
+
+    const payload = {id: user.id}   //mongo: _id, mongoose uses abstraction so we can access w/o underscore
+
+    //sign web token - step one of JWT process
+    jwt.sign(
+      payload, 
+      config.get('jwtSecret'),       //from config/default.json
+      {expiresIn: 360000},          //sets expiry time for token. optional - 3600 is norm (one hour)
+      (err, token) => {
+        if (err) throw err;
+        res.json({ token: token });    //include token in response
+      }
+    );
+  } catch (err) {
+    console.log('Error in users route: ', err.message)
+  }
+})
+
 module.exports = router;
