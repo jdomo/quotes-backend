@@ -7,6 +7,8 @@ const config = require('config');
 const bcrypt = require('bcryptjs');
 const { check, validationResult } = require('express-validator');
 
+require('dotenv').config();
+
 //test / auth GET
 router.get('/', auth, async (req, res) => {
   try {
@@ -49,7 +51,7 @@ async (req, res) => {
     //sign web token - step one of JWT process
     jwt.sign(
       payload, 
-      config.get('jwtSecret'),       //from config/default.json
+      process.env.JWT_SECRET,       //from config/default.json
       {expiresIn: 360000},          //sets expiry time for token. optional - 3600 is norm (one hour)
       (err, token) => {
         if (err) throw err;

@@ -5,6 +5,7 @@ const {check, validationResult} = require('express-validator');
 const Quote = require('../../models/Quote')
 const User = require('../../models/User')
 
+//access environment variables
 require('dotenv').config();
 
 const ToneAnalyzerV3 = require('ibm-watson/tone-analyzer/v3');

@@ -6,7 +6,7 @@ const config = require('config');
 const { check, validationResult } = require('express-validator');
 
 const User = require('../../models/User')
-
+require('dotenv').config();
 
 //register POST route
 router.post('/', 
@@ -46,7 +46,7 @@ async (req, res) => {
     //sign web token - step one of JWT process
     jwt.sign(
       payload, 
-      config.get('jwtSecret'),       //from config/default.json
+      process.env.JWT_SECRET,       //from config/default.json
       {expiresIn: 360000},          //sets expiry time for token. optional - 3600 is norm (one hour)
       (err, token) => {
         if (err) throw err;
@@ -89,7 +89,7 @@ async (req, res) => {
     //sign web token - step one of JWT process
     jwt.sign(
       payload, 
-      config.get('jwtSecret'),       //from config/default.json
+      process.env.JWT_SECRET,       //from config/default.json
       {expiresIn: 360000},          //sets expiry time for token. optional - 3600 is norm (one hour)
       (err, token) => {
         if (err) throw err;

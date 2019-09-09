@@ -4,9 +4,11 @@ const mongoose = require('mongoose');
 const config = require('config');
 const db = config.get('mongoURI'); //refers to connection string in default.json
 
+require('dotenv').config();
+
 const connectDB = async () => {
   try {
-    await mongoose.connect(db, {
+    await mongoose.connect(process.env.MONGO_URI, {
       //gets rid of deprecation warnings
       useNewUrlParser: true,
       useCreateIndex: true
