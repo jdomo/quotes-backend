@@ -21,6 +21,11 @@ i {
   margin-top: 20px;
 }
 
+#results-header {
+  text-decoration: underline;
+  font-weight: 400;
+}
+
 .container {
   margin-top: 80px;
   /* display: flex; */

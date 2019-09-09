@@ -31,7 +31,8 @@ class Form extends Component {
     const parsedResponse = await response.json();
     console.log(parsedResponse, '<---parsedResponse')
     this.setState({
-      submitted: true
+      submitted: true,
+      quoteAnalysis: parsedResponse.data
     })
   }
 
@@ -42,7 +43,10 @@ class Form extends Component {
           this.state.submitted && 
           <Redirect to={{
             pathname: '/result',
-            state: {quoteAnalysis: this.state.quoteAnalysis}
+            state: {
+              quote: this.state.quote,
+              quoteAnalysis: this.state.quoteAnalysis
+            }
           }}/>
         }
 

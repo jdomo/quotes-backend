@@ -14,7 +14,7 @@ const toneAnalyzer = new ToneAnalyzerV3({
 
 router.get('/me', auth, async (req, res) => {
   try {
-    //find quote by 
+    //find quote by user
     const quote = await Quote.findOne({ user: req.user.id }).populate('user', ['email']);
 
     if (!quote) res.status(400).json({message: 'No quotes found for this user.'})
@@ -30,52 +30,22 @@ router.get('/me', auth, async (req, res) => {
 
 router.post('/analyze', (req, res) => {
   console.log(req.body, '<-- req.body in analyze post')
-  const text = req.body.quote;
-
   const toneParams = {
-    tone_input: { 'text': text },
+    tone_input: { 'text': req.body.quote },
     content_type: 'application/json',
   };
-  // console.log(req.body)
-  // const toneParams = {
-  //   tone_input: { 'text': req.body.quoteText},
-  //   content_type: 'application/json',
-  // };
   
   toneAnalyzer.tone(toneParams)
   .then(response => {
     const data = [];
-    console.log(response)
-    response.document_tone.tones.map((item, index) => {
+    response.document_tone.tones.map((item) => {
       data.push({name: item.tone_name, score: item.score})
-      console.log(data)
     })
-    console.log(data, "<-- data array")
+    console.log(data, '<-- data from fetch in quotes.js (backend)')
     res.json({
       data: data
     })
   })
 })
-
-
-//   response.sentences_tone.map(item => {
-//     data.sentenceTones.push({
-//       sentence_id: item.sentence_id, 
-//       text: item.text, 
-//       tones: item.tones.map(item => {
-//         let obj = {};
-//         obj.name = item.tone_name;
-//         obj.score = item.score;
-//         return obj
-//       })})
-//   })
-//   return data;
-// })
-// .then(data => {
-//   console.log(data, '<-- final data');
-//   console.log(data.sentenceTones[0].tones, '<-- sentence tones');
-//   console.log(data.sentenceTones[1].tones, '<-- sentence tones');
-//   console.log(data.sentenceTones[2].tones, '<-- sentence tones');
-// })
 
 module.exports = router;
