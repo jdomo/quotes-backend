@@ -19,6 +19,7 @@ i {
   padding: 0 20px;
   font-weight: 100;
   color: rgba(0, 0, 0, 0.247);
+  transition: color .3s
 }
 
 .fa-eye:hover {

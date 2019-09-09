@@ -5,12 +5,13 @@ const {check, validationResult} = require('express-validator');
 const Quote = require('../../models/Quote')
 const User = require('../../models/User')
 
+require('dotenv').config();
+
 const ToneAnalyzerV3 = require('ibm-watson/tone-analyzer/v3');
 const toneAnalyzer = new ToneAnalyzerV3({
   version: '2017-09-21',
-  iam_apikey: 'yEYuRPcdpuhyx4p8bX7viCk4KYOKq3seO2HTW0uFm9xt'
+  iam_apikey: process.env.IBM_API_KEY
 })
-
 
 router.get('/me', auth, async (req, res) => {
   try {
