@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
+import Chart from './Chart'
 
 const Result = (props) => {
 
@@ -23,6 +24,11 @@ const Result = (props) => {
               : "No tone detected. Try a longer quote - no jibberish."}
           </ul>
         </div>
+        {resultsList.length &&   
+          <div id="chart-div">
+            <Chart quoteData={props.location.state.quoteAnalysis}/>
+          </div>
+        }
         <Link to="/">
           <input type="submit" className="submit-btn btn" value="back"/>
         </Link>
