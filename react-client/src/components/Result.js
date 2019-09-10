@@ -15,9 +15,9 @@ const Result = (props) => {
   return (
     <div>
       <div className="container">
-        <h3>{`"${props.location.state.quote}"`}</h3>
+        <h3 id="results-quote">{`"${props.location.state.quote}"`}</h3>
         <div id="results-div">
-          <p id="results-header">Results:</p>
+          <p id="results-header">Results</p>
           <ul id="results-list">
             {resultsList.length ? 
               resultsList 

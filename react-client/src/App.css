@@ -35,6 +35,12 @@ i {
   font-size: 1.25rem;
 }
 
+#results-quote {
+  border: 1px solid rgb(46, 46, 46);
+  border-radius: 12px;
+  padding: 28px 25px 15px 25px;
+}
+
 #results-number {
   font-weight: 600
 }
@@ -51,8 +57,11 @@ i {
 }
 
 #results-header {
-  font-weight: 400;
+  font-family: "Raleway", serif;
+  font-weight: 600;
   margin-bottom: 20px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
 }
 
 #results-div {
