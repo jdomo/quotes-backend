@@ -14,7 +14,7 @@ const Chart = (props) => {
     labels: labels,
     datasets: [
       {
-        label: 'Quote Results',
+        label: 'match %',
         backgroundColor: 'rgba(255,255,255,0.2)',
         borderColor: 'rgba(255,99,132,1)',
         color: 'rgba(255,255,255)',
@@ -58,25 +58,5 @@ const Chart = (props) => {
     />
   )
 }
-
-// export default React.createClass({
-//   displayName: 'BarExample',
-//   render() {
-//     console.log(this.props, '<---props in Chart.js')
-//     return (
-//       <div>
-//         <h2>Bar Example (custom size)</h2>
-        // <Bar
-        //   data={data}
-        //   width={100}
-        //   height={50}
-        //   options={{
-        //     maintainAspectRatio: false
-        //   }}
-        // />
-//       </div>
-//     );
-//   }
-// });
 
 export default Chart;
