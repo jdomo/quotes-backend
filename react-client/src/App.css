@@ -32,10 +32,11 @@ i {
 }
 
 .results-item {
-  text-transform: uppercase;
-  font-weight: 600;
-  font-size: 2.5rem;
-  letter-spacing: 2px;
+  font-size: 1.25rem;
+}
+
+#results-number {
+  font-weight: 600
 }
 
 #input-quote, #register-form input {
@@ -50,7 +51,6 @@ i {
 }
 
 #results-header {
-  text-decoration: underline;
   font-weight: 400;
   margin-bottom: 20px;
 }

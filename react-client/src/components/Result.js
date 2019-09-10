@@ -7,7 +7,7 @@ const Result = (props) => {
   const resultsList = props.location.state.quoteAnalysis.map((item, index) => {
     return (
       <li key={index} className="results-item">
-        {`${item.name} ----> ${Math.floor(item.score * 100)}% match`}
+        {`${item.name}`}<br/><span id="results-number">{`${Math.floor(item.score * 100)}% `}</span>match<br/><br/>
       </li>
     )
   })
@@ -17,7 +17,7 @@ const Result = (props) => {
       <div className="container">
         <h3>{`"${props.location.state.quote}"`}</h3>
         <div id="results-div">
-          <p id="results-header">Results</p>
+          <p id="results-header">Results:</p>
           <ul id="results-list">
             {resultsList.length ? 
               resultsList 

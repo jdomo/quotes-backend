@@ -34,14 +34,23 @@ const Chart = (props) => {
       height={25}
       options={{
         maintainAspectRatio: true,
+        legend: {
+          labels: {
+            fontColor: 'rgba(255,255,255)'
+          }
+        },
         scales: {
           xAxes: [{
             barThickness: 60,
+              ticks: {
+                fontColor: 'rgba(255,255,255)'
+              }
           }],
           yAxes: [{
             ticks: {
-              color: 'rgba(255,255,255)',
-              beginAtZero: true
+              fontColor: 'rgba(255,255,255)',
+              beginAtZero: true,
+              suggestedMax: 1.0
             }
           }]
         }
