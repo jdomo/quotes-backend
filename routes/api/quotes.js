@@ -14,22 +14,6 @@ const toneAnalyzer = new ToneAnalyzerV3({
   iam_apikey: process.env.IBM_API_KEY
 })
 
-router.get('/me', auth, async (req, res) => {
-  try {
-    //find quote by user
-    const quote = await Quote.findOne({ user: req.user.id }).populate('user', ['email']);
-
-    if (!quote) res.status(400).json({message: 'No quotes found for this user.'})
-
-    res.json({quote: quote})
-
-  } catch(err) {
-    console.error(err.message);
-    res.status(500).send('Server Error')
-  }
-})
-
-
 router.post('/analyze', (req, res) => {
   console.log(req.body, '<-- req.body in analyze post')
   const toneParams = {
@@ -49,6 +33,21 @@ router.post('/analyze', (req, res) => {
       data: data
     })
   })
+})
+
+router.get('/me', auth, async (req, res) => {
+  try {
+    //find quote by user
+    const quote = await Quote.findOne({ user: req.user.id }).populate('user', ['email']);
+
+    if (!quote) res.status(400).json({message: 'No quotes found for this user.'})
+
+    res.json({quote: quote})
+
+  } catch(err) {
+    console.error(err.message);
+    res.status(500).send('Server Error')
+  }
 })
 
 module.exports = router;

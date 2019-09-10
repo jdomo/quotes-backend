@@ -93,7 +93,10 @@ async (req, res) => {
       {expiresIn: 360000},          //sets expiry time for token. optional - 3600 is norm (one hour)
       (err, token) => {
         if (err) throw err;
-        res.json({ token: token });    //include token in response
+        res.json({ 
+          token: token,
+          id: user.id
+        });    //include token in response
       }
     );
   } catch (err) {
