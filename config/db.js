@@ -1,8 +1,8 @@
 const mongoose = require('mongoose');
 
 //ability to grab connection string inside default.json
-const config = require('config');
-const db = config.get('mongoURI'); //refers to connection string in default.json
+// const config = require('config');
+// const db = config.get('mongoURI'); //refers to connection string in default.json
 
 require('dotenv').config();
 
