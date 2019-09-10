@@ -8,7 +8,7 @@ const app = express();
 connectDB();  //access config/db to connect to mongo
 
 //middleware
-app.use(express.static(__dirname))
+// app.use(express.static(__dirname))
 app.use(express.static(path.join(__dirname, 'react-client', 'build')))
 app.use(express.json({extended: false})); //allows us to get data from req.body
 app.use(cors());
@@ -33,3 +33,6 @@ app.get('/*', (req, res) => {
 app.listen(PORT, () => {
   console.log(`it\'s lit on ${PORT}`);
 })
+
+//when working locally, comment out line 12 (app.use(express.static(path.join...)))
+//and app.get('/*'....)

@@ -29,7 +29,7 @@ class Form extends Component {
       this.setState({quote})
     }
 
-    const response = await fetch(`http://localhost:5000/api/quotes/analyze`, {
+    const response = await fetch(`/api/quotes/analyze`, {
       method: 'POST',
       body: JSON.stringify({quote: this.state.quote}),
       headers: {
