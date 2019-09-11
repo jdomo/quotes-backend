@@ -18,7 +18,7 @@ const Register = () => {
 
   const onSubmit = async (e) => {
     e.preventDefault();
-    if (registerData.password !== registerData.passwordCheck) console.log('passwords don\'t match');
+    if (registerData.password !== registerData.passwordCheck) alert('passwords don\'t match');
     else {
       const newUser = {
         email: registerData.email,
@@ -35,7 +35,6 @@ const Register = () => {
         })
 
         const parsedUserResponse = await response.json()
-        console.log(parsedUserResponse, '<--- parsed user response containing JWT')
         setRegisterData({
           ...registerData,
           logged: true
