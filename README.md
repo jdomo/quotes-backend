@@ -35,6 +35,7 @@ It's easy - simply navigate to the link above, enter your quote in the text fiel
 
 - CRUD functionality - Ability to save your quotes and analysis results to a user profile
 - Use of other APIs to generate random quotes if you're hard up for ideas
+- React animations for page transitions
 
 ## Author
 Joseph Domovitch (2019)
