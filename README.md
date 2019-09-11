@@ -26,6 +26,10 @@ It's easy - simply navigate to the link above, enter your quote in the text fiel
 - Node.js
 - Materialize
 - Chart.js
+- Bcryptjs
+- Express Validator
+- Git
+- Github
 
 ## Next Steps
 
