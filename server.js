@@ -8,7 +8,7 @@ const app = express();
 connectDB();  //access config/db to connect to mongo
 
 //middleware
-// app.use(express.static(path.join(__dirname, 'react-client', 'build')))
+app.use(express.static(path.join(__dirname, 'react-client', 'build')))
 app.use(express.json({extended: false})); //allows us to get data from req.body
 app.use(cors());
 
@@ -22,9 +22,9 @@ app.use('/api/users', require('./routes/api/users'))
 app.use('/api/quotes', require('./routes/api/quotes'))
 
 
-// app.get('/*', (req, res) => {
-//   res.sendFile(path.join(__dirname,'react-client','build', 'index.html'))
-// })
+app.get('/*', (req, res) => {
+  res.sendFile(path.join(__dirname,'react-client','build', 'index.html'))
+})
 
 //listener
 app.listen(PORT, () => {
