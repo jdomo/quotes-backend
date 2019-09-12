@@ -20,6 +20,7 @@ It's easy - simply navigate to the link above, enter your quote in the text fiel
 ## Technologies used
 
 - Express.js
+- IBM Watson / Tone Analyzer
 - MongoDB Atlas
 - Mongoose
 - React
