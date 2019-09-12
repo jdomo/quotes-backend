@@ -1,6 +1,6 @@
 # Watch Your Tone
 
-Ever wonder about how an AI interprets the things we say? Using IBM's Tone Analyzer, **Watch Your Tone** enlists the processing power of Watson to determine the emotional content of your favourite phrases and quotes.
+Ever wonder how an AI interprets the things we say? Using IBM's Tone Analyzer, **Watch Your Tone** enlists the processing power of Watson to determine the emotional content of your favourite phrases and quotes.
 
 ## Screenshots
 ![WYT Screenshot 1](https://i.ibb.co/bz2xvKC/Screen-Shot-2019-09-10-at-4-21-54-PM.png)
@@ -20,14 +20,11 @@ It's easy - simply navigate to the link above, enter your quote in the text fiel
 ## Technologies used
 
 - Express.js
-- MongoDB
+- MongoDB Atlas
 - Mongoose
-- React.js
-- Node.js
+- React
 - Materialize
-- Chart.js
-- Bcryptjs
-- Express Validator
+- Chart.js via react-chartjs-2
 - Git
 - Github
 
